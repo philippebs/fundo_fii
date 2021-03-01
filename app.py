@@ -13,6 +13,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 #Cria a rota para o caminho
 @app.route("/")
+@cross_origin()
 def index():
 	return render_template('index.html')
 

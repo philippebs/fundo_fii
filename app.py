@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS, cross_origin
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -7,12 +8,15 @@ import json
 
 #Inicializa nossa aplicacao Flask
 app =  Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 #Cria a rota para o caminho
 @app.route("/")
 def index():
 	return render_template('index.html')
 
+@cross_origin()
 @app.route("/api/resources/fii")
 def fundo_fii():
 	dicionario = {}
@@ -36,7 +40,6 @@ def fundo_fii():
 			item[cabecalho[i].replace(' ', '_').replace('(', '').replace(')', '').replace('/', '_')] = textos[i]
 			dicionario[textos[0]] = item
 
-	print(dicionario)
 	lista = list(dicionario.values())
 	return json.dumps(lista, ensure_ascii=False, indent=3).encode('utf8')
 

@@ -1,15 +1,24 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+from unicodedata import normalize
+import re
 
 class Acao:
 	
 	def __init__(self, nome, descricao, tipo, valor):
 		self.nome = nome
-		self.descricao = descricao.replace('\n', '')[0:15]
+		self.descricao = self.remover_caracter_special(self.normalizar_string(descricao))[0:20]
 		self.tipo = tipo
 		self.valor = valor
 
+
+	def normalizar_string(self, texto):
+		return normalize('NFKD', texto).encode('ASCII', 'ignore').decode('ASCII')
+
+
+	def remover_caracter_special(self, texto):
+		return re.sub('[/!@#$().\n]', '', texto)
 
 	def __str__(self):
 		descricao_retorno = self.descricao

@@ -19,7 +19,7 @@ def index():
 	return render_template('index.html')
 
 @cross_origin()
-@app.route("	")
+@app.route("/api/resources/fii")
 def fundo_fii():
 	dicionario = {}
 	headers = {"User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8 GTB7.1 (.NET CLR 3.5.30729)", "Referer": "http://example.com"}
@@ -49,7 +49,7 @@ def fundo_fii():
 @app.route('/api/resources/statusinvest/<nome_acao>')
 def acao_statusinvest(nome_acao):
 	return statusInvest.get_cotacao(nome_acao)
-
+	
 
 #Executa nossa aplicacao
 if __name__ == "__main__":

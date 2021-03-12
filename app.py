@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import os
 import json
+import statusInvest
 
 #Inicializa nossa aplicacao Flask
 app =  Flask(__name__)
@@ -18,7 +19,7 @@ def index():
 	return render_template('index.html')
 
 @cross_origin()
-@app.route("/api/resources/fii")
+@app.route("	")
 def fundo_fii():
 	dicionario = {}
 	headers = {"User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100722 Firefox/3.6.8 GTB7.1 (.NET CLR 3.5.30729)", "Referer": "http://example.com"}
@@ -43,6 +44,12 @@ def fundo_fii():
 
 	lista = list(dicionario.values())
 	return json.dumps(lista, ensure_ascii=False, indent=3).encode('utf8')
+
+@cross_origin()
+@app.route('/api/resources/statusinvest/<nome_acao>')
+def acao_statusinvest(nome_acao):
+	return statusInvest.get_cotacao(nome_acao)
+
 
 #Executa nossa aplicacao
 if __name__ == "__main__":

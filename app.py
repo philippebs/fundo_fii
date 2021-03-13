@@ -46,7 +46,7 @@ def fundo_fii():
 	return json.dumps(lista, ensure_ascii=False, indent=3).encode('utf8')
 
 @cross_origin()
-@app.route('/api/resources/statusinvest/<nome_acao>')
+@app.route('/api/resources/acao/<nome_acao>')
 def acao_statusinvest(nome_acao):
 	return statusInvest.get_cotacao(nome_acao)
 	

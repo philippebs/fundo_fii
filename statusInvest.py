@@ -52,6 +52,20 @@ def get_cotacao(nome_acao):
 		acao = Acao(nome_acao, descricao.text, tipo.text, valor.text)
 		lista.append(acao)
 	
+	historico = soup.find('div', attrs={'class': 'today-historical-container'})
+	indicadores = historico.find_all('div', attrs={'class': 'indicators'})
+	for indicador in indicadores:
+		tipo_indicador = indicador.find('strong', attrs={'d-block uppercase'})
+		items = indicador.find_all('div', attrs={'item'})
+		for item in items:
+			titulo = item.find('h3', attrs={'class': 'title'})
+			valor = item.find('strong', attrs={'class': 'value'})
+			tipo = 'R$'
+			if '%' not in valor.text:
+				tipo = '%'
+			acao = Acao(nome_acao, titulo.text, tipo, valor.text)
+			lista.append(acao)
+
 	return json.dumps(lista, ensure_ascii=False, default=lambda o: o.__dict__, indent=3)
 
 

@@ -5,7 +5,10 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import os
 import json
-import statusInvest
+import acao
+from unicodedata import normalize
+import re
+
 
 #Inicializa nossa aplicacao Flask
 app =  Flask(__name__)
@@ -17,6 +20,13 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @cross_origin()
 def index():
 	return render_template('index.html')
+
+def normalizar_string(texto):
+		return normalize('NFKD', texto).encode('ASCII', 'ignore').decode('ASCII')
+
+
+def remover_caracter_special(texto):
+	return re.sub('[/!@#$().\n]', '', texto)
 
 @cross_origin()
 @app.route("/api/resources/fii")
@@ -30,8 +40,8 @@ def fundo_fii():
 	heads = table_tag.thead.find_all('th')
 	cabecalho = []
 	for head in heads:
-		cabecalho.append(head.text)
-		
+		cabecalho.append(remover_caracter_special(normalizar_string(head.text.replace(' ', '_'))))
+	print(cabecalho)
 	rows = table_tag.tbody.find_all('tr')
 	for row in rows:
 		textos = [line for line in row.text.split('\n') if line != '']
@@ -39,7 +49,7 @@ def fundo_fii():
 		if textos[0] in dicionario:
 			item = dicionario[textos[0]]
 		for i in range(0, len(textos) -1):
-			item[cabecalho[i].replace(' ', '_').replace('(', '').replace(')', '').replace('/', '_')] = textos[i]
+			item[cabecalho[i]] = textos[i]
 			dicionario[textos[0]] = item
 
 	lista = list(dicionario.values())
@@ -47,8 +57,8 @@ def fundo_fii():
 
 @cross_origin()
 @app.route('/api/resources/acao/<nome_acao>')
-def acao_statusinvest(nome_acao):
-	return statusInvest.get_cotacao(nome_acao)
+def fund_acao(nome_acao):
+	return acao.get_cotacao(nome_acao)
 	
 
 #Executa nossa aplicacao

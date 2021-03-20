@@ -16,14 +16,14 @@ def index():
 	return render_template('index.html')
 
 
-@cross_origin()
 @app.route("/api/resources/fii")
+@cross_origin()
 def fundo_fii():
 	return fii.get_fiis()
 
 
-@cross_origin()
 @app.route('/api/resources/acao/<nome_acao>')
+@cross_origin()
 def fund_acao(nome_acao):
 	return acao.get_cotacao(nome_acao)
 	

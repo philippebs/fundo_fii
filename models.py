@@ -45,35 +45,35 @@ class Acao():
 
 class Fii():
 
-    def __init__(self, codigo):
-        'Codigodo_fundo', 
-        'Setor', 
-        'Preco_Atual', 
-        'Liquidez_Diaria', 
-        'Dividendo', 
-        'DividendYield', 
-        'DY_3MAcumulado', 
-        'DY_6MAcumulado', 
-        'DY_12MAcumulado', 
-        'DY_3MMedia', 
-        'DY_6MMedia', 
-        'DY_12MMedia', 
-        'DY_Ano', 
-        'Variacao_Preco', 
-        'RentabPeriodo', 
-        'RentabAcumulada', 
-        'PatrimonioLiq', 
-        'VPA', 
-        'PVPA', 
-        'DYPatrimonial', 
-        'VariacaoPatrimonial', 
-        'Rentab_Patrno_Periodo', 
-        'Rentab_PatrAcumulada', 
-        'VacanciaFisica', 
-        'VacanciaFinanceira', 
-        'QuantidadeAtivos'
+    def __init__(self, link, codigo_fundo, setor, preco_atual, liquidez_diaria,dividendo, dividend_yield, dy_3m_acumulado, dy_6m_acumulado, dy_12m_acumulado,
+                dy_3m_media, dy_6m_media, dy_12m_media, dy_ano, variacao_preco, rentabilidade_periodo, rentabilidade_acumulada, patrimonio_liq,
+                vpa, pvpa, dy_patrimonial, variacao_patrimonial, rentabilidade_patrno_periodo, rentabilidade_patr_acumulada, vacancia_fisica,
+                vacancia_financeira, quantidade_ativos):
+        self.link = link
+        self.codigo_fundo = codigo_fundo
+        self.setor = setor
+        self.preco_atual = preco_atual
+        self.liquidez_diaria = liquidez_diaria
+        self.dividendo = dividendo
+        self.dividend_yield = dividend_yield
+        self.dy_3m_acumulado = dy_3m_acumulado
+        self.dy_6m_acumulado = dy_6m_acumulado
+        self.dy_12m_acumulado = dy_12m_acumulado
+        self.dy_3m_media = dy_3m_media
+        self.dy_6m_media = dy_6m_media
+        self.dy_12m_media = dy_12m_media
+        self.dy_ano = dy_ano 
+        self.variacao_preco = variacao_preco
+        self.rentabilidade_periodo = rentabilidade_periodo
+        self.rentabilidade_acumulada = rentabilidade_acumulada
+        self.patrimonio_liq = patrimonio_liq
+        self.vpa = vpa
+        self.pvpa = pvpa
+        self.dy_patrimonial = dy_patrimonial
+        self.variacao_patrimonial = variacao_patrimonial
+        self.rentabilidade_patrno_periodo = rentabilidade_patrno_periodo
+        self.rentabilidade_patr_acumulada = rentabilidade_patr_acumulada
+        self.vacancia_fisica = vacancia_fisica
+        self.vacancia_financeira = vacancia_financeira
+        self.quantidade_ativos = quantidade_ativos
 
-
-# acao = Acao('Teste')
-
-# print(acao.nome)

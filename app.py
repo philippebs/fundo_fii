@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin
-import acao
-import fii
+import acao, fii
 
 
 #Inicializa nossa aplicacao Flask
 app =  Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 #Cria a rota para o caminho
 @app.route("/")

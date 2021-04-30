@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin
+from datetime import datetime
 import acao, fii
 
 
@@ -9,10 +10,15 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
+def save_ip(ip):
+	with open('ips.txt', 'a', encoding='utf-8') as txt_file:
+		txt_file.write("{IP: " + ip + ' , Hora: ' + datetime.now().strftime("%d/%m/%Y %H:%M:%S") + '}\n')
+
 #Cria a rota para o caminho
 @app.route("/")
 @cross_origin()
 def index():
+	save_ip(request.remote_addr)
 	return render_template('index.html')
 
 

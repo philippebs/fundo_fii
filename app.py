@@ -18,6 +18,7 @@ def save_ip(ip):
 @app.route("/")
 @cross_origin()
 def index():
+	print("teste: " + request.remote_addr)
 	save_ip(request.remote_addr)
 	return render_template('index.html')
 

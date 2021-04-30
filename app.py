@@ -25,12 +25,14 @@ def index():
 @app.route("/api/resources/fii")
 @cross_origin()
 def fundo_fii():
+	save_ip(request.remote_addr)
 	return fii.get_fiis()
 
 
 @app.route('/api/resources/acao/<nome_acao>')
 @cross_origin()
 def fund_acao(nome_acao):
+	save_ip(request.remote_addr)
 	return acao.get_cotacao(nome_acao)
 	
 

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import json
 from unicodedata import normalize
 import re
-from models import Acao
+from models import AcaoOld
 
 # class Acao:
 	
@@ -75,7 +75,7 @@ def get_cotacao(nome_acao):
 	cagr_receitas_5_anos = soup.select('#indicators-section > div.indicator-today-container > div > div:nth-child(5) > div > div:nth-child(1) > div > div > strong')[0].text
 	cagr_lucros_5_anos = soup.select('#indicators-section > div.indicator-today-container > div > div:nth-child(5) > div > div:nth-child(2) > div > div > strong')[0].text
 	
-	acao = Acao(nome_acao, valor_atual, min_52_semanas, max_52_semanas, dividend_yield, valorizacao_12m, dy, pl, peg_ratio, pvp, evebitda, evebit, pebitda, pebit, vpa,
+	acao = AcaoOld(nome_acao, valor_atual, min_52_semanas, max_52_semanas, dividend_yield, valorizacao_12m, dy, pl, peg_ratio, pvp, evebitda, evebit, pebitda, pebit, vpa,
 				pativo, lpa, psr, 	pcap_giro, pativo_circ_liq, div_liquidapl, div_liquidaebitda, div_liquidaebit, plativos, passivoativos, liq_corrente, m_bruta,
 				m_ebitda, m_ebit, m_liquida, roe, roa, roic, giro_ativos, cagr_receitas_5_anos, cagr_lucros_5_anos)
 	return json.dumps(acao, ensure_ascii=False, default=lambda o: o.__dict__, indent=3)

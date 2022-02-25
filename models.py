@@ -3,7 +3,6 @@ from flask import json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Date
 # from sqlalchemy.orm import relationships, backref
-from database import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship, backref
 from sqlalchemy.ext.declarative import declarative_base

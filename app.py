@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin
 from datetime import datetime
 import acao, fii
-from database import db_session
+from models import db_session
 import os
 
 #Inicializa nossa aplicacao Flask

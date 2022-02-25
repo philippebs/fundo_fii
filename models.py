@@ -219,7 +219,7 @@ class Fii(BaseModel):
     ativo = Column(Boolean, default=True)
 
     _default_fields = [
-        'preco_atual', 'liquidez_diaria','dividendo', 'dividend_yield', 'dy_3m_acumulado', 'dy_6m_acumulado', 'dy_12m_acumulado',
+        'data_importacao','preco_atual', 'liquidez_diaria','dividendo', 'dividend_yield', 'dy_3m_acumulado', 'dy_6m_acumulado', 'dy_12m_acumulado',
         'dy_3m_media', 'dy_6m_media', 'dy_12m_media', 'dy_ano', 'variacao_preco', 'rentabilidade_periodo', 'rentabilidade_acumulada', 'patrimonio_liq',
         'vpa', 'pvpa', 'dy_patrimonial', 'variacao_patrimonial', 'rentabilidade_patrno_periodo', 'rentabilidade_patr_acumulada', 'vacancia_fisica',
         'vacancia_financeira', 'quantidade_ativos'

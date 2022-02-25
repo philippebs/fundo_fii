@@ -115,8 +115,9 @@ def get_fiis_codes():
 def get_fiis_v1():
     date_today = date.today()
     fiis = Fii.query.filter(Fii.data_importacao == date_today).all()
-    if len(fiis) > 0:        
-       return convert_to_json(fiis)
+    if len(fiis) > 0:
+        print("Retorno do banco")
+        return convert_to_json(fiis)
 
     investimentos = Investimento.query.filter(Investimento.ativo == True, Investimento.tipo == TipoInvestimento.FII.value).all()
     lista_fundos = []
@@ -202,6 +203,7 @@ if __name__ == "__main__":
     # print("Método novo salvando no banco")
     # print(datetime.now().strftime('%d/%m/%Y %H:%M:%S'))
     # json_novo = get_fiis_v1()
+    print(get_fiis_v1())
     # print(datetime.now().strftime('%d/%m/%Y %H:%M:%S'))
     # # date_today = datetime.today().strftime('%Y-%m-%d')
     # # fii = Fii.query.filter(Fii.data_importacao == date_today).all()
